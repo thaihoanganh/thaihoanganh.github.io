@@ -19,12 +19,14 @@ main.addEventListener('touchend', function (event) {
   var subX = event.changedTouches[0].screenX - x;
   var subY = event.changedTouches[0].screenY - y;
 
-  if (Math.abs(subX) - Math.abs(subY) > 0) {
-    if (subX > 0) swipeRight();
-    else swipeLeft();
-  } else {
-    if (subY > 0) swipeDown();
-    else swipeUp();
+  if (Math.abs(subX) > 3 && Math.abs(subY) > 3) {
+    if (Math.abs(subX) - Math.abs(subY) > 0) {
+      if (subX > 0) swipeRight();
+      else swipeLeft();
+    } else {
+      if (subY > 0) swipeDown();
+      else swipeUp();
+    }
   }
 });
 
