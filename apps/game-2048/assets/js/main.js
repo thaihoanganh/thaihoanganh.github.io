@@ -28,7 +28,6 @@ main.addEventListener('touchend', function (event) {
   }
 });
 
-//
 document.addEventListener('keydown', function (event) {
   switch (event.code) {
     case 'ArrowUp':
@@ -156,3 +155,5 @@ function render(gameOver) {
 }
 
 render(false);
+
+// https://github.com/thaihoanganh
