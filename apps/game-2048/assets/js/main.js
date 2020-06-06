@@ -1,9 +1,11 @@
 var n = 4;
 var score = 0;
+var best = localStorage.getItem('best2048') ? localStorage.getItem('best2048') : 0;
 var numbers = [0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var x, y;
-
 var main = document.getElementById('main');
+
+console.log(best);
 
 main.style.height = `${main.offsetWidth}px`;
 
@@ -26,7 +28,6 @@ main.addEventListener('touchend', function (event) {
 });
 
 document.addEventListener('keydown', function (event) {
-  console.log(event.code);
   switch (event.code) {
     case 'ArrowUp':
       swipeUp();
@@ -135,8 +136,13 @@ function render(gameOver) {
     });
     main.innerHTML = content;
     document.getElementById('score').textContent = score;
+    document.getElementById('best').textContent = best;
   } else {
     alert('Game Over');
+    if (score > best) {
+      best = score;
+      localStorage.setItem('best2048', score);
+    }
     score = 0;
     numbers = [];
     for (var i = 0; i < n * n - 1; i++) {
