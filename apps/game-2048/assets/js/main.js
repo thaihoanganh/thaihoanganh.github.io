@@ -5,15 +5,16 @@ var numbers = [0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var x, y;
 var main = document.getElementById('main');
 
-console.log(best);
-
 main.style.height = `${main.offsetWidth}px`;
 
+// Lấy toạ độ x,y khi bắt đầu chạm vào màn hình
 main.addEventListener('touchstart', function (event) {
   x = event.touches[0].screenX;
   y = event.touches[0].screenY;
 });
 
+// Lấy toạ độ x,y sau khi vuốt màn hình.
+// So sánh toạ độ trước khi chạm và sau khi vuốt để biết được vuốt lên, xuống, trái hay là phải
 main.addEventListener('touchend', function (event) {
   var subX = event.changedTouches[0].screenX - x;
   var subY = event.changedTouches[0].screenY - y;
@@ -27,6 +28,7 @@ main.addEventListener('touchend', function (event) {
   }
 });
 
+//
 document.addEventListener('keydown', function (event) {
   switch (event.code) {
     case 'ArrowUp':
