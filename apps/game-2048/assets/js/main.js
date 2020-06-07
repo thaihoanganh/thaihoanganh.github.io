@@ -50,6 +50,7 @@ document.addEventListener('keydown', function (event) {
 });
 
 function swipeRight() {
+  var coppyNumbers = [...numbers];
   for (var i = 0; i < n; i++) {
     for (var j = 0; j < n - 1; j++) {
       for (var jj = n - 1; jj >= 0; jj--) {
@@ -64,9 +65,10 @@ function swipeRight() {
       }
     }
   }
-  gameOver() === false ? render(false) : render(true);
+  gameOver(coppyNumbers) === false ? render(false) : render(true);
 }
 function swipeLeft() {
+  var coppyNumbers = [...numbers];
   for (var i = 0; i < n; i++) {
     for (var j = 0; j < n - 1; j++) {
       for (var jj = 0; jj < n; jj++) {
@@ -81,9 +83,10 @@ function swipeLeft() {
       }
     }
   }
-  gameOver() === false ? render(false) : render(true);
+  gameOver(coppyNumbers) === false ? render(false) : render(true);
 }
 function swipeDown() {
+  var coppyNumbers = [...numbers];
   for (var i = 0; i < n; i++) {
     for (var j = 0; j < n - 1; j++) {
       for (var jj = n - 1; jj >= 0; jj--) {
@@ -98,9 +101,10 @@ function swipeDown() {
       }
     }
   }
-  gameOver() === false ? render(false) : render(true);
+  gameOver(coppyNumbers) === false ? render(false) : render(true);
 }
 function swipeUp() {
+  var coppyNumbers = [...numbers];
   for (var i = 0; i < n; i++) {
     for (var j = 0; j < n - 1; j++) {
       for (var jj = 0; jj < n; jj++) {
@@ -115,16 +119,18 @@ function swipeUp() {
       }
     }
   }
-  gameOver() === false ? render(false) : render(true);
+  gameOver(coppyNumbers) === false ? render(false) : render(true);
 }
 
-function gameOver() {
+function gameOver(coppyNumbers) {
   if (numbers.indexOf(0) !== -1) {
     var arr = [];
-    numbers.map(function (number, index) {
-      if (number === 0) arr.push(index);
-    });
-    numbers[arr[Math.floor(Math.random() * arr.length)]] = 2;
+    if (JSON.stringify(numbers) != JSON.stringify(coppyNumbers)) {
+      numbers.map(function (number, index) {
+        if (number === 0) arr.push(index);
+      });
+      numbers[arr[Math.floor(Math.random() * arr.length)]] = 2;
+    }
     return false;
   } else {
     var over = true;
