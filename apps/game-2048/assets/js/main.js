@@ -127,7 +127,33 @@ function gameOver() {
     numbers[arr[Math.floor(Math.random() * arr.length)]] = 2;
     return false;
   } else {
-    return true;
+    var over = true;
+    for (var i = 0; i < n; i++) {
+      var test = 0;
+      var testNumbersX = [];
+      var testNumbersY = [];
+      for (var j = 0; j < n; j++) {
+        testNumbersX.push(numbers[n * i + j]);
+      }
+      for (var j = 0; j < n; j++) {
+        testNumbersY.push(numbers[n * j + i]);
+      }
+      testNumbersX.map(function (number, index) {
+        if (index === 0 || (number !== 0 && test !== number)) {
+          test = number;
+        } else {
+          if (number !== 0 && test === number) over = false;
+        }
+      });
+      testNumbersY.map(function (number, index) {
+        if (index === 0 || (number !== 0 && test !== number)) {
+          test = number;
+        } else {
+          if (number !== 0 && test === number) over = false;
+        }
+      });
+    }
+    return over;
   }
 }
 
